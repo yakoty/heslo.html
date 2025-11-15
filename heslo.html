@@ -1,0 +1,224 @@
+<!-- 
+Jestli tohle čteš, něco je špatně.
+Buď jsi mě neotevřel/a v prohlížeči nebo na jiné kartě.
+Tak to hned udělej prosím.
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <title>Přihlášení</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* DARK MODE */
+    body {
+      font-family: system-ui, Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      margin:0;
+      background:#1a1a1a;
+      color:#e8e8e8;
+    }
+
+    .card {
+      background:#2a2a2a;
+      padding:24px;
+      border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.5);
+      width:360px;
+      transition:0.3s ease;
+    }
+
+    input[type="password"] {
+      width:100%;
+      padding:10px;
+      margin-top:8px;
+      box-sizing:border-box;
+      background:#333;
+      border:1px solid #555;
+      color:#fff;
+      border-radius:6px;
+    }
+
+    button {
+      margin-top:12px;
+      width:100%;
+      padding:10px;
+      cursor:pointer;
+      background:#444;
+      border:1px solid #666;
+      color:#fff;
+      border-radius:6px;
+      transition:0.2s;
+    }
+
+    button:hover {
+      background:#555;
+    }
+
+    .msg {
+      margin-top:10px;
+      color:#ff5555;
+      min-height:18px;
+    }
+
+    .hidden {
+      display:none;
+    }
+
+    .secret {
+      margin-top:20px;
+      display:none;
+      padding:15px;
+      background:#333;
+      border-radius:8px;
+      border:1px solid #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+
+    <!-- FORMULÁŘ -->
+    <div id="formSection">
+      <h2>Zadejte heslo</h2>
+      <label for="pw">Heslo</label>
+      <input id="pw" type="password" autocomplete="off" />
+      <button id="submitBtn">Pokračovat</button>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <!-- RŮZNÉ SEKCE PODLE HESLA -->
+    <div id="secretA" class="secret">
+      <h3>Už se to blíží</h3>
+      <p>Tento rok čekej neočekávané.</p>
+      <p>Na mě však nezapomeň ještě se ti můžu hodit</p>
+    </div>
+
+    <div id="secretB" class="secret">
+      <h3>Výsledek B</h3>
+      <p>Obsah pro heslo <strong>"heslo2"</strong>.</p>
+    </div>
+
+    <div id="secretC" class="secret">
+      <h3>Admin panel</h3>
+      <p>Tajný obsah pro heslo <strong>"admin"</strong>.</p>
+    </div>
+
+  </div>
+
+  <script>
+    // === NASTAVENÍ HESLA ===
+    const passwords = {
+      "super-tajny-heslo": "secretA",
+      "feig.snd2iáhfvk4.jhn;3ř1sgbfb": "secretB",
+      "sfkgj7.,nn1538l;asfh4mýksjsgs": "secretC"
+    };
+
+    const formSection = document.getElementById("formSection");
+
+    document.getElementById("submitBtn").onclick = () => {
+      const pw = document.getElementById("pw").value;
+      const msg = document.getElementById("msg");
+
+      // schovat všechny sekce
+      document.querySelectorAll(".secret").forEach(s => s.style.display = "none");
+
+      if (passwords[pw]) {
+        msg.textContent = "";
+
+        // skryj formulář
+        formSection.classList.add("hidden");
+
+        // zobraz správnou sekci
+        const sectionId = passwords[pw];
+        document.getElementById(sectionId).style.display = "block";
+
+      } else {
+        msg.textContent = "Špatné heslo.";
+      }
+    };
+  </script>
+</body>
+</html>
